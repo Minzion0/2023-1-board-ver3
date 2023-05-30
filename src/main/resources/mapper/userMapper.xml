@@ -26,9 +26,9 @@
     </update>
     <update id="updUser">
         update t_user
-        set main_pic=#{main_pic}
+        set main_pic=#{mainPic}
         ,updated_at=now()
-        where uid=#{uid} and upw=#{upw}
+        where iuser=#{iuser}
     </update>
 
 </mapper>
