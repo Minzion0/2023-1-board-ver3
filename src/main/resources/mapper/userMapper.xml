@@ -11,4 +11,9 @@
     ,gender=#{gender}
     ,addr=#{addr}
 </insert>
+    <select id="selUser" resultType="UserInsVo">
+        select *
+        from t_user
+        where uid=#{uid} and upw=#{upw}
+    </select>
 </mapper>
