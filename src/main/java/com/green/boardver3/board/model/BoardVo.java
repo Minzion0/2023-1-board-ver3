@@ -9,6 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BoardVo {
     private int iboard;
     private String title;
-    private String nm;
+    private String  nm;
     private String createdAt;
 }
