@@ -4,9 +4,7 @@ import com.green.boardver3.user.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/user")
 @RestController
@@ -29,8 +27,10 @@ public class UserController {
 
     }
     @PostMapping("/login")
-    public UserSelVo loginUser(@RequestBody UserLoninDto dto){
-        return service.selUser(dto);
+    @Operation(summary = "로그인",description = ""+
+    "리턴값: "+"(1)로그인성공,"+"(2)아이디없음,"+"(3)비밀번호 다름")
+    public int postLoginUser(@RequestBody UserLoninDto dto){
+        return service.login(dto);
     }
     @PatchMapping("/pw")
     public int patchUser(@RequestBody UserReDto dto){

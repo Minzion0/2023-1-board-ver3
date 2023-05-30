@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
     int insUser(UserInsDto dto);
-    UserSelVo selUser(UserLoninDto dto);//앞에께 보여주는거 ()께 입력하는거
+    int selUser(UserLoninDto dto);//앞에께 보여주는거 ()께 입력하는거
     int repUser(UserReDto dto);
     int updUser(Filepic pic);
 }

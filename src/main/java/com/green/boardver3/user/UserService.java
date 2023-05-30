@@ -33,10 +33,17 @@ public class UserService {
 
     }
 
-    public UserSelVo selUser(UserLoninDto dto){ //앞 보여주는거 안 입력받는거!
+    public int login(UserLoninDto dto){ //앞 보여주는거 안 입력받는거!
         String hpw = commonUtils.encodeSha256(dto.getUpw());
         dto.setUpw(hpw);
-        return mapper.selUser(dto);
+
+        try {
+            return mapper.selUser(dto);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return 2;
+        }
     }
     public int repUser(UserReDto dto){
         return mapper.repUser(dto);

@@ -11,7 +11,7 @@
     ,gender=#{gender}
     ,addr=#{addr}
 </insert>
-    <select id="selUser" resultType="UserSelVo"><!-- resultType은 보여주는거-->
+    <select id="selUser" resultType="UserLoninDto"><!-- resultType은 보여주는거-->
         select
         uid,nm
         from t_user
@@ -24,4 +24,11 @@
         ,updated_at=now()
         where uid=#{uid} and upw=#{upw}
     </update>
+    <update id="updUser">
+        update t_user
+        set main_pic=#{main_pic}
+        ,updated_at=now()
+        where uid=#{uid} and upw=#{upw}
+    </update>
+
 </mapper>
