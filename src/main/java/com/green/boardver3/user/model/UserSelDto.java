@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserSelVo {
+public class UserSelDto {
     private String uid;
     private String nm;
 }
