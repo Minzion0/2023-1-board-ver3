@@ -11,11 +11,11 @@
     ,gender=#{gender}
     ,addr=#{addr}
 </insert>
-    <select id="selUser" resultType="UserLoninDto"><!-- resultType은 보여주는거-->
+    <select id="sleUserById" resultType="UserLoginVo"><!-- resultType은 보여주는거-->
         select
-        uid,nm
+        iuser,uid,upw,nm,gender,addr,main_pic mainPic
         from t_user
-        where uid=#{uid} and upw=#{upw}
+        where uid= #{uid}
     </select>
 
     <update id="repUser">

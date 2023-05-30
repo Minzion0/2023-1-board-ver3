@@ -2,6 +2,7 @@ package com.green.boardver3.user;
 
 import com.green.boardver3.user.model.*;
 import com.green.boardver3.utils.CommonUtils;
+import org.apache.ibatis.binding.BindingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,17 +34,21 @@ public class UserService {
 
     }
 
-    public int login(UserLoninDto dto){ //앞 보여주는거 안 입력받는거!
-        String hpw = commonUtils.encodeSha256(dto.getUpw());
-        dto.setUpw(hpw);
+    public int login(UserLoginDto dto){ //앞 보여주는거 안 입력받는거!
 
-        try {
-            return mapper.selUser(dto);
-
-        }catch (Exception e){
-            e.printStackTrace();
+        UserLoginVo vo = mapper.sleUserById(dto);
+        if (vo==null){
             return 2;
         }
+       if (!(vo.getUpw().equals(commonUtils.encodeSha256(dto.getUpw())))){
+           return 3;
+       }
+       return 1;
+
+
+
+
+
     }
     public int repUser(UserReDto dto){
         return mapper.repUser(dto);
