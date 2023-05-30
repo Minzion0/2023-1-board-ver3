@@ -11,6 +11,7 @@ public class UserService {
     public UserService(UserMapper mapper) {
         this.mapper = mapper;
     }
+
     public int insUser(UserInsDto dto){
         return mapper.insUser(dto);
     }
