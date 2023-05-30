@@ -13,7 +13,7 @@
 </insert>
     <select id="selUser" resultType="UserSelVo"><!-- resultType은 보여주는거-->
         select
-        uid,upw
+        uid,nm
         from t_user
         where uid=#{uid} and upw=#{upw}
     </select>
