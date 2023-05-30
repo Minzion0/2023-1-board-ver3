@@ -15,6 +15,7 @@
         from t_board A
         inner join t_user B
         on A.iuser= B.iuser
+        order by A.iboard desc
         limit #{startIdx},#{row}
     </select>
    <update id="updBoard">
