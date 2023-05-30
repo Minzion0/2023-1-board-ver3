@@ -16,10 +16,6 @@ public class BoardService {
         return mapper.insBoard(dto);
     }
     public int updBoard(BoardUpdDto dto){
-        BoardUpdDto updDto = mapper.updBoard(dto);
-        if (updDto.getIuser() == dto.getIuser()){
-            return 1;
-        }
-        return 2;
+        return mapper.updBoard(dto);
     }
 }
