@@ -1,0 +1,26 @@
+
+정호 - controller,service
+민용 - mapper둘다
+
+
+/user
+post 회원가입
+get 로그인
+patch /pw 비밀번호 수정
+patch /pic 프사수정
+delete 탈퇴
+
+
+/board
+get /maxpage?row=40 마지막 page값
+get ?page=1&row=40 리스트
+get /{iboard} 디테일 (댓글5,댓글 maxpage값
+post 글등록
+put 수정
+delete 글삭제
+
+/board/cmt
+post 댓글 등록
+get /{iboard}?gage=2(갯수 5 row:5)
+put 수정
+delete 삭제
