@@ -4,6 +4,7 @@ import com.green.boardver3.board.model.BoardDto;
 import com.green.boardver3.board.model.BoardInsDto;
 import com.green.boardver3.board.model.BoardUpdDto;
 import com.green.boardver3.board.model.BoardVo;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,15 @@ public class BoardController {
 
     }
     @GetMapping
-    public List<BoardVo>getBoard(@RequestParam @Min(value = 1) int page,@RequestParam(defaultValue = "30") int row){
+    public List<BoardVo> selBoard(@RequestParam int page, @RequestParam int row){
         BoardDto dto = new BoardDto();
-        dto.setPage(page);
         dto.setRow(row);
+        dto.setPage(page);
         return service.selBoard(dto);
     }
+
+
+
     @PutMapping
     public int updBoard(@RequestBody BoardUpdDto dto){
         return service.updBoard(dto);

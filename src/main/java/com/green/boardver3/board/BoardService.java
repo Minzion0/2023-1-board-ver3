@@ -12,14 +12,17 @@ import java.util.List;
 @Service
 public class BoardService {
     private final BoardMapper mapper;
+
     @Autowired
     public BoardService(BoardMapper mapper) {
         this.mapper = mapper;
     }
-    public int insBoard(BoardInsDto dto){
+
+    public int insBoard(BoardInsDto dto) {
         return mapper.insBoard(dto);
     }
-    public int updBoard(BoardUpdDto dto){
+
+    public int updBoard(BoardUpdDto dto) {
         BoardUpdDto updDto = mapper.updBoard(dto);
 //        if (updDto.getIuser() == dto.getIuser()){
 //            return 1;
@@ -27,9 +30,9 @@ public class BoardService {
         return 0;
     }
 
-    public List<BoardVo>selBoard(BoardDto dto){
-        int num=dto.getPage()-1;
-        dto.setStartIdx(num*dto.getRow());
+    public List<BoardVo> selBoard(BoardDto dto) {
+        int page = dto.getPage() - 1;
+        dto.setStartIdx(page * dto.getRow());
         return mapper.selBoard(dto);
     }
 }

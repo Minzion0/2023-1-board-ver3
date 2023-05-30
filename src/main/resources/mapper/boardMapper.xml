@@ -10,12 +10,13 @@
         ,iuser=#{iuser}
     </insert>
     <select id="selBoard" resultType="BoardVo">
-        select
-        A.iboard,A.title,B.nm,A.created_at createdAt
+        select A.iboard, A.title, B.nm, A.created_At createdAt
         from t_board A
-        join t_user B
-        on A.iuser=B.iuser
-        limit #{startIdx},#{row}
+        inner join t_user B
+        on A.iuser = B.iuser
+        order by iboard desc
+        limit #{startIdx}, #{row}
+
     </select>
    <update id="updBoard">
        update t_board
