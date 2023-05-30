@@ -4,13 +4,11 @@ import com.green.boardver3.user.model.UserInsDto;
 import com.green.boardver3.user.model.UserReDto;
 import com.green.boardver3.user.model.UserSelDto;
 import com.green.boardver3.user.model.UserSelVo;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/user")
 @RestController
-@Tag(name = "유저")
 public class UserController {
     private final UserService service;
     @Autowired
