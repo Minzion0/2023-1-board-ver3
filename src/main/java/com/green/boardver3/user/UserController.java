@@ -1,13 +1,12 @@
 package com.green.boardver3.user;
 
-import com.green.boardver3.user.model.UserInsDto;
-import com.green.boardver3.user.model.UserReDto;
-import com.green.boardver3.user.model.UserLoninDto;
-import com.green.boardver3.user.model.UserSelVo;
+import com.green.boardver3.user.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/user")
 @RestController

@@ -30,4 +30,5 @@
         ,updated_at=now()
         where uid=#{uid} and upw=#{upw}
     </update>
+
 </mapper>
