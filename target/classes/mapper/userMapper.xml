@@ -11,7 +11,7 @@
     ,gender=#{gender}
     ,addr=#{addr}
 </insert>
-    <select id="sleUserById" resultType="UserLoginVo"><!-- resultType은 보여주는거-->
+    <select id="selUserById" resultType="UserLoginVo"><!-- resultType은 보여주는거-->
         select
         iuser,uid,upw,nm,gender,addr,main_pic mainPic
         from t_user
@@ -26,9 +26,9 @@
     </update>
     <update id="updUser">
         update t_user
-        set main_pic=#{main_pic}
+        set main_pic=#{mainPic}
         ,updated_at=now()
-        where uid=#{uid} and upw=#{upw}
+        where iuser=#{iuser}
     </update>
 
 </mapper>
