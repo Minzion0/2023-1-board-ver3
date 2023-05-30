@@ -1,6 +1,7 @@
 package com.green.boardver3.user;
 
 import com.green.boardver3.user.model.UserInsDto;
+import com.green.boardver3.user.model.UserReDto;
 import com.green.boardver3.user.model.UserSelDto;
 import com.green.boardver3.user.model.UserSelVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,8 @@ public class UserService {
 
     public UserSelVo selUser(UserSelDto dto){
         return mapper.selUser(dto);
+    }
+    public int repUser(UserReDto dto){
+        return mapper.repUser(dto);
     }
 }

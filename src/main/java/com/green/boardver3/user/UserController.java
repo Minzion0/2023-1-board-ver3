@@ -1,6 +1,7 @@
 package com.green.boardver3.user;
 
 import com.green.boardver3.user.model.UserInsDto;
+import com.green.boardver3.user.model.UserReDto;
 import com.green.boardver3.user.model.UserSelDto;
 import com.green.boardver3.user.model.UserSelVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,9 @@ public class UserController {
         dto.setUid(uid);
         dto.setUpw(upw);
         return service.selUser(dto);
+    }
+    @PatchMapping
+    public int patchUser(@RequestBody UserReDto dto){
+        return service.repUser(dto);
     }
 }
