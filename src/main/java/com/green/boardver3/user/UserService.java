@@ -20,10 +20,19 @@ public class UserService {
 
     public int insUser(UserInsDto dto){
         char gender = Character.toUpperCase(dto.getGender());
+        if(!(gender == 'M' || gender=='F')){
+            return -1;
+        }
         dto.setGender(gender);
         String hpw = commonUtils.encodeSha256(dto.getUpw());
         dto.setUpw(hpw);
-        return mapper.insUser(dto);
+        try {
+            return mapper.insUser(dto);
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
 
     }
 
