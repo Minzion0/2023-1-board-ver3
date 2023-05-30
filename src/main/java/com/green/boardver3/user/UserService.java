@@ -3,15 +3,20 @@ package com.green.boardver3.user;
 import com.green.boardver3.user.model.*;
 import com.green.boardver3.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.UUID;
 
 @Service
 public class UserService {
     private final UserMapper mapper;
     private final CommonUtils commonUtils;
+    @Value("D:/download/")
+    private String fileDir;
+
     @Autowired
     public UserService(UserMapper mapper,CommonUtils commonUtils) {
         this.commonUtils = commonUtils;
@@ -61,6 +66,14 @@ public class UserService {
         String uuid = UUID.randomUUID().toString();
         String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
         String saveFileName = uuid + ext;
+        String saveFilePath= fileDir+saveFileName;
+        File file= new File(saveFilePath);
+
+        try {
+            img.transferTo(file);
+        }catch (Exception e){
+
+        }
         return 1;
     }
 }
