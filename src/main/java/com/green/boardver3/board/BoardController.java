@@ -1,11 +1,9 @@
 package com.green.boardver3.board;
 
 import com.green.boardver3.board.model.BoardInsDto;
+import com.green.boardver3.board.model.BoardUpdDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/board")
@@ -18,5 +16,11 @@ public class BoardController {
     @PostMapping
     public int postBoard(@RequestBody BoardInsDto dto){
         return service.insBoard(dto);
+
     }
+    @PutMapping
+    public int updBoard(@RequestBody BoardUpdDto dto){
+        return service.updBoard(dto);
+    }
+
 }

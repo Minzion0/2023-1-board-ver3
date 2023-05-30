@@ -1,6 +1,7 @@
 package com.green.boardver3.board;
 
 import com.green.boardver3.board.model.BoardInsDto;
+import com.green.boardver3.board.model.BoardUpdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +14,12 @@ public class BoardService {
     }
     public int insBoard(BoardInsDto dto){
         return mapper.insBoard(dto);
+    }
+    public int updBoard(BoardUpdDto dto){
+        BoardUpdDto updDto = mapper.updBoard(dto);
+        if (updDto.getIuser() == dto.getIuser()){
+            return 1;
+        }
+        return 2;
     }
 }
