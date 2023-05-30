@@ -40,7 +40,8 @@ public class UserService {
         if (vo==null){
             return 2;
         }
-       if (!(vo.getUpw().equals(commonUtils.encodeSha256(dto.getUpw())))){
+        String pws = commonUtils.encodeSha256(dto.getUpw());
+        if (!(vo.getUpw().equals(pws))){
            return 3;
        }
        return 1;
