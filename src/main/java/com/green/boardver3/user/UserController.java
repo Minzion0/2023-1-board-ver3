@@ -27,7 +27,7 @@ public class UserController {
         dto.setUpw(upw);
         return service.selUser(dto);
     }
-    @PatchMapping
+    @PatchMapping("/pw")
     public int patchUser(@RequestBody UserReDto dto){
         return service.repUser(dto);
     }

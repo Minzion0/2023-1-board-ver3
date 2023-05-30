@@ -19,7 +19,7 @@ public class UserService {
         return mapper.insUser(dto);
     }
 
-    public UserSelVo selUser(UserSelDto dto){
+    public UserSelVo selUser(UserSelDto dto){ //앞 보여주는거 안 입력받는거!
         return mapper.selUser(dto);
     }
     public int repUser(UserReDto dto){
