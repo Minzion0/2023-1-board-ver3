@@ -1,11 +1,10 @@
 package com.green.boardver3.user;
 
 import com.green.boardver3.user.model.UserInsDto;
+import com.green.boardver3.user.model.UserSelDto;
+import com.green.boardver3.user.model.UserSelVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/user")
 @RestController
@@ -18,5 +17,13 @@ public class UserController {
     @PostMapping
     public int postuser(@RequestBody UserInsDto dto){
         return service.insUser(dto);
+
+    }
+    @GetMapping
+    public UserSelVo loginUser(String uid, String upw){
+        UserSelDto dto = new UserSelDto();
+        dto.setUid(uid);
+        dto.setUpw(upw);
+        return service.selUser(dto);
     }
 }

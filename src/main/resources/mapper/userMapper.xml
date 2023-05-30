@@ -11,9 +11,16 @@
     ,gender=#{gender}
     ,addr=#{addr}
 </insert>
-    <select id="selUser" resultType="UserInsVo">
-        select *
+    <select id="selUser" resultType="UserSelVo">
+        select
+        uid,upw
         from t_user
         where uid=#{uid} and upw=#{upw}
     </select>
+
+    <update id="repUser">
+        update t_user
+        set upw=#{npw}
+        where uid=#{uid} and upw=#{upw}
+    </update>
 </mapper>
