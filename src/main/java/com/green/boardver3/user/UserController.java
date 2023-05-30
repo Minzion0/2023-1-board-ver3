@@ -21,7 +21,7 @@ public class UserController {
 
     }
     @GetMapping
-    public UserSelVo loginUser(String uid, String upw){
+    public UserSelVo loginUser(@RequestParam String uid, String upw){
         UserSelDto dto = new UserSelDto();
         dto.setUid(uid);
         dto.setUpw(upw);
