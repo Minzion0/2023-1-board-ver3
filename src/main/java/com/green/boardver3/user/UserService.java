@@ -19,9 +19,12 @@ public class UserService {
     }
 
     public int insUser(UserInsDto dto){
+        char gender = Character.toUpperCase(dto.getGender());
+        dto.setGender(gender);
         String hpw = commonUtils.encodeSha256(dto.getUpw());
         dto.setUpw(hpw);
         return mapper.insUser(dto);
+
     }
 
     public UserSelVo selUser(UserSelDto dto){ //앞 보여주는거 안 입력받는거!

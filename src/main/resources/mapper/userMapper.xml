@@ -24,4 +24,10 @@
         ,updated_at=now()
         where uid=#{uid} and upw=#{upw}
     </update>
+    <update id="updUser">
+        update t_user
+        set main_pic=#{main_pic}
+        ,updated_at=now()
+        where uid=#{uid} and upw=#{upw}
+    </update>
 </mapper>
