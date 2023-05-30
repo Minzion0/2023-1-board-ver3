@@ -11,10 +11,10 @@
     </insert>
     <select id="selBoard" resultType="BoardVo">
         select
-        A.iboard,A.title,B.nm,A.created_at createdAt
+        A.iboard,A.title,A.iuser,B.nm,A.created_at createdAt
         from t_board A
-        join t_user B
-        on A.iuser=B.iuser
+        inner join t_user B
+        on A.iuser= B.iuser
         limit #{startIdx},#{row}
     </select>
    <update id="updBoard">
