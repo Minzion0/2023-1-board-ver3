@@ -4,6 +4,9 @@ import com.green.boardver3.user.model.*;
 import com.green.boardver3.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -52,5 +55,12 @@ public class UserService {
         String npw = commonUtils.encodeSha256(dto.getNpw());
         dto.setNpw(npw);
         return mapper.repUser(dto);
+    }
+    public int updPic(Filepic filepic, MultipartFile img){
+        String originalFilename = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+        String saveFileName = uuid + ext;
+        return 1;
     }
 }

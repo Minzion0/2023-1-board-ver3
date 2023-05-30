@@ -4,7 +4,9 @@ import com.green.boardver3.user.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/user")
 @RestController
@@ -36,4 +38,9 @@ public class UserController {
     public int patchUser(@RequestBody UserReDto dto){
         return service.repUser(dto);
     }
+    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
+    public int patchPic(@RequestPart Filepic filepic, @RequestPart MultipartFile img){
+        return service.updPic(filepic,img);
+    }
+
 }
