@@ -2,7 +2,7 @@ package com.green.boardver3.user;
 
 import com.green.boardver3.user.model.UserInsDto;
 import com.green.boardver3.user.model.UserReDto;
-import com.green.boardver3.user.model.UserSelDto;
+import com.green.boardver3.user.model.UserLoninDto;
 import com.green.boardver3.user.model.UserSelVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,11 +29,8 @@ public class UserController {
         return service.insUser(dto);
 
     }
-    @GetMapping
-    public UserSelVo loginUser(@RequestParam String uid, String upw){
-        UserSelDto dto = new UserSelDto();
-        dto.setUid(uid);
-        dto.setUpw(upw);
+    @PostMapping("/login")
+    public UserSelVo loginUser(@RequestBody UserLoninDto dto){
         return service.selUser(dto);
     }
     @PatchMapping("/pw")

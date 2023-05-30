@@ -2,7 +2,7 @@ package com.green.boardver3.user;
 
 import com.green.boardver3.user.model.UserInsDto;
 import com.green.boardver3.user.model.UserReDto;
-import com.green.boardver3.user.model.UserSelDto;
+import com.green.boardver3.user.model.UserLoninDto;
 import com.green.boardver3.user.model.UserSelVo;
 import com.green.boardver3.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class UserService {
 
     }
 
-    public UserSelVo selUser(UserSelDto dto){ //앞 보여주는거 안 입력받는거!
+    public UserSelVo selUser(UserLoninDto dto){ //앞 보여주는거 안 입력받는거!
         String hpw = commonUtils.encodeSha256(dto.getUpw());
         dto.setUpw(hpw);
         return mapper.selUser(dto);
