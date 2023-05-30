@@ -22,7 +22,7 @@
         update t_user
         set upw=#{npw}
         ,updated_at=now()
-        where uid=#{uid} and upw=#{upw}
+        where iuser = #{iuser}
     </update>
     <update id="updUser">
         update t_user
