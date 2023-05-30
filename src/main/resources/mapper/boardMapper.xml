@@ -9,11 +9,14 @@
         ,ctnt=#{ctnt}
         ,iuser=#{iuser}
     </insert>
-    <update id="updBoard">
-        update t_board
-        set title=#{title}
-        ,ctnt=#{ctnt}
-        ,updated_at = now()
-        where iboard = #{iboard}
-    </update>
+    <select id="selBoard" resultType="BoardVo">
+
+    </select>
+   <update id="updBoard">
+       update t_board
+       set title=#{title}
+       ,ctnt=#{ctnt}
+       where iboard=#{iboard}
+   </update>
+
 </mapper>

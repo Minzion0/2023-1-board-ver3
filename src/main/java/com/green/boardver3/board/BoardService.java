@@ -1,9 +1,13 @@
 package com.green.boardver3.board;
 
+import com.green.boardver3.board.model.BoardDto;
 import com.green.boardver3.board.model.BoardInsDto;
 import com.green.boardver3.board.model.BoardUpdDto;
+import com.green.boardver3.board.model.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BoardService {
@@ -17,9 +21,15 @@ public class BoardService {
     }
     public int updBoard(BoardUpdDto dto){
         BoardUpdDto updDto = mapper.updBoard(dto);
-        if (updDto.getIuser() == dto.getIuser()){
-            return 1;
-        }
-        return 2;
+//        if (updDto.getIuser() == dto.getIuser()){
+//            return 1;
+//        }
+        return 0;
+    }
+
+    public List<BoardVo>selBoard(BoardDto dto){
+        int num=dto.getPage()-1;
+        dto.setStartIdx(num*dto.getRow());
+        return mapper.selBoard(dto);
     }
 }
