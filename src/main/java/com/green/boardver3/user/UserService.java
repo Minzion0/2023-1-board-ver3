@@ -37,14 +37,14 @@ public class UserService {
     public int login(UserLoginDto dto){ //앞 보여주는거 안 입력받는거!
 
         UserLoginVo vo = mapper.sleUserById(dto);
+        String pws = commonUtils.encodeSha256(dto.getUpw());
         if (vo==null){
             return 2;
         }
-        String pws = commonUtils.encodeSha256(dto.getUpw());
-        if (!(vo.getUpw().equals(pws))){
-           return 3;
+        if (vo.getUpw().equals(pws)){
+           return 1;
        }
-       return 1;
+       return 3;
 
 
 
