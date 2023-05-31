@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.lang.Math.ceil;
-
 @Service
 public class BoardService {
     private final BoardMapper mapper;
@@ -18,13 +16,7 @@ public class BoardService {
     public int insBoard(BoardInsDto dto){
         return mapper.insBoard(dto);
     }
-    public int updBoard(BoardUpdDto dto){
-        BoardUpdDto updDto = mapper.updBoard(dto);
-//        if (updDto.getIuser() == dto.getIuser()){
-//            return 1;
-//        }
-        return 0;
-    }
+
 
     public List<BoardVo>selBoard(BoardDto dto){
         int num=dto.getPage()-1;
@@ -40,5 +32,11 @@ public class BoardService {
     }
     public BoardDetailVo DeBoard(BoardDetailDto dto){
         return mapper.DeBoard(dto);
+    }
+    public int updBoard(BoardUpDto dto){
+        return mapper.updBoard(dto);
+    }
+    public void deleBoard(BoardDelDto dto){
+         mapper.delBoard(dto);
     }
 }
