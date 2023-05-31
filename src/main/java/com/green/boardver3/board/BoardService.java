@@ -1,13 +1,12 @@
 package com.green.boardver3.board;
 
-import com.green.boardver3.board.model.BoardDto;
-import com.green.boardver3.board.model.BoardInsDto;
-import com.green.boardver3.board.model.BoardUpdDto;
-import com.green.boardver3.board.model.BoardVo;
+import com.green.boardver3.board.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static java.lang.Math.ceil;
 
 @Service
 public class BoardService {
@@ -31,5 +30,13 @@ public class BoardService {
         int num=dto.getPage()-1;
         dto.setStartIdx(num*dto.getRow());
         return mapper.selBoard(dto);
+    }
+    public BoardMaxDto maxBoard(BoardMaxDto dto){
+        int maxboard = mapper.maxboard();
+        double num = Math.ceil((double) maxboard / dto.getRow());
+
+        dto.setMaxPage((int)num);
+        return dto;
+
     }
 }

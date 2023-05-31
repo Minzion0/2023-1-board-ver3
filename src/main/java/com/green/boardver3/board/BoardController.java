@@ -1,9 +1,6 @@
 package com.green.boardver3.board;
 
-import com.green.boardver3.board.model.BoardDto;
-import com.green.boardver3.board.model.BoardInsDto;
-import com.green.boardver3.board.model.BoardUpdDto;
-import com.green.boardver3.board.model.BoardVo;
+import com.green.boardver3.board.model.*;
 import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +27,14 @@ public class BoardController {
         dto.setPage(page);
         dto.setRow(row);
         return service.selBoard(dto);
+    }
+    @GetMapping("/maxpage")
+    public int getMaxPage(@RequestParam (defaultValue = "30") int row){
+        BoardMaxDto dto = new BoardMaxDto();
+        dto.setRow(row);
+        BoardMaxDto boardMaxDto = service.maxBoard(dto);
+        return boardMaxDto.getMaxPage();
+
     }
     @PutMapping
     public int updBoard(@RequestBody BoardUpdDto dto){

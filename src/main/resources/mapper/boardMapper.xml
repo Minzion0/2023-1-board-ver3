@@ -25,4 +25,9 @@
        where iboard=#{iboard}
    </update>
 
+    <select id="maxboard" resultType="int">
+        select count(iboard)
+        from t_board
+    </select>
+
 </mapper>
