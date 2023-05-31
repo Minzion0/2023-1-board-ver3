@@ -1,5 +1,6 @@
 package com.green.boardver3.cmt;
 
+import com.green.boardver3.cmt.model.CmtEntity;
 import com.green.boardver3.cmt.model.CmtInsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,11 @@ public class CmtService {
         this.mapper = mapper;
     }
     public int insCmt(CmtInsDto dto){
-        return mapper.insCmt(dto);
+        CmtEntity entity = new CmtEntity();
+        entity.setCtnt(dto.getCtnt());
+        entity.setIuser(dto.getIuser());
+        entity.setIboard(dto.getIboard());
+        int iboard_cmt = mapper.insCmt(entity);
+        return iboard_cmt;
     }
 }
