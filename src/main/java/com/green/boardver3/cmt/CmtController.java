@@ -22,6 +22,7 @@ public class CmtController {
     @PostMapping("/cmt")
     @Operation(summary = "댓글생성")
     public int postCmt(@RequestBody CmtInsDto dto){
+
         return service.insCmt(dto);
     }
 }
