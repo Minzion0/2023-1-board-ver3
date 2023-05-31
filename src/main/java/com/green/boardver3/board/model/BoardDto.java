@@ -7,4 +7,5 @@ public class BoardDto extends BoardEntity{
     private int row;
     private int page;
     private int startIdx;
+    private int maxpage;
 }

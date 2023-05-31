@@ -13,4 +13,5 @@ public interface BoardMapper {
     int insBoard(BoardInsDto dto);
     List<BoardVo> selBoard(BoardDto dto);
     BoardUpdDto updBoard(BoardUpdDto dto);
+    List<BoardVo> maxBoard(BoardDto dto);
 }

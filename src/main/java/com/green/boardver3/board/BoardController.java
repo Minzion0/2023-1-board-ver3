@@ -35,5 +35,11 @@ public class BoardController {
     public int updBoard(@RequestBody BoardUpdDto dto){
         return service.updBoard(dto);
     }
+    @GetMapping
+    public List<BoardVo>maxBoard(@RequestParam (defaultValue = "40" )int row){
+        BoardDto dto = new BoardDto();
+        dto.setRow(row);
+        return service.maxBoard(dto);
 
+    }
 }
