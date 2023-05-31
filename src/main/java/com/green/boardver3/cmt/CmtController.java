@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Tag(name = "댓글")
-@RequestMapping("/board/cmt")
+@RequestMapping("/board")
 public class CmtController {
     private final CmtService service;
     @Autowired
@@ -19,7 +19,7 @@ public class CmtController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/cmt")
     @Operation(summary = "댓글생성")
     public int postCmt(@RequestBody CmtInsDto dto){
         return service.insCmt(dto);
