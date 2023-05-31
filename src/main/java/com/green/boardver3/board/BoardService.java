@@ -18,6 +18,7 @@ public class BoardService {
         entity.setTitle(dto.getTitle());
         entity.setCtnt(dto.getCtnt());
         entity.setIuser(dto.getIuser());
+
         int result = mapper.insBoard(entity);
         if(result==1){
             return entity.getIboard();
