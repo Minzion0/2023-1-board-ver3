@@ -41,4 +41,7 @@ public class BoardService {
     public BoardDetailVo DeBoard(BoardDetailDto dto){
         return mapper.DeBoard(dto);
     }
+    public int delBoard(BoardDelDto dto){
+        return mapper.delBoard(dto);
+    }
 }
