@@ -6,8 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class BoardDetailVo {
+    private int iboard;
     private String title;
     private String ctnt;
     private String nm;
+    private String writerMainPic;
     private String createdAt;
+    private String updatedAt;
 }

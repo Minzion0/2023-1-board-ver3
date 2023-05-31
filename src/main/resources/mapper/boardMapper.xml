@@ -37,7 +37,8 @@
         from t_board
     </select>
     <select id ="DeBoard" resultType="BoardDetailVo">
-        select A.title, A.ctnt, B.nm, A.created_at createdAt
+        select A.iboard, A.title, A.ctnt, B.nm, B.main_pic writerMainPic
+        ,A.created_at createdAt,A.updated_at updatedAt
         from t_board A
         inner join t_user B
         on A.iuser = B.iuser
