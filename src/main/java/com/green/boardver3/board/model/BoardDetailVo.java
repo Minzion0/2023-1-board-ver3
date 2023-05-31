@@ -9,7 +9,7 @@ public class BoardDetailVo {
     private int iboard;
     private String title;
     private String ctnt;
-    private String nm;
+    private String writer;
     private String writerMainPic;
     private String createdAt;
     private String updatedAt;
