@@ -17,7 +17,17 @@ public class CmtService {
         entity.setCtnt(dto.getCtnt());
         entity.setIuser(dto.getIuser());
         entity.setIboard(dto.getIboard());
-        int iboard_cmt = mapper.insCmt(entity);
-        return iboard_cmt;
+        try{
+            int iboard_cmt = mapper.insCmt(entity);
+            if (iboard_cmt==1){
+                return entity.getIboardCmt();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+        return 0;
+
     }
 }
