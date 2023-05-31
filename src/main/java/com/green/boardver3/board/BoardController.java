@@ -18,13 +18,14 @@ public class BoardController {
     public BoardController(BoardService service) {
         this.service = service;
     }
+
     @PostMapping
     public int postBoard(@RequestBody BoardInsDto dto){
         return service.insBoard(dto);
 
     }
     @GetMapping
-    public List<BoardVo>getBoard(@RequestParam @Min(value = 1) int page,@RequestParam (defaultValue = "40") @Min (value = 40) int row){
+    public List<BoardVo>getBoard(@RequestParam (defaultValue = "1") int page,@RequestParam (defaultValue = "40") @Min (value = 40) int row){
         BoardDto dto = new BoardDto();
         dto.setPage(page);
         dto.setRow(row);
