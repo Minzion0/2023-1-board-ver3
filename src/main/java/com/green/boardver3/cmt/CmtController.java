@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/board")
 public class CmtController {
     private final CmtService service;
+
     @Autowired
     public CmtController(CmtService service) {
         this.service = service;

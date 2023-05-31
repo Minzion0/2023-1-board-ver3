@@ -9,6 +9,10 @@
         ,iuser=#{iuser}
         ,ctnt=#{ctnt}
     </insert>
-
-
+    <update id = "updCmt">
+        update t_board_cmt
+        set ctnt = #{ctnt}
+        ,updated_at = now()
+        where iboard_cmt = #{iboard_cmt} and iboard = #{iboard} and iuser = #{iuser}
+    </update>
 </mapper>
