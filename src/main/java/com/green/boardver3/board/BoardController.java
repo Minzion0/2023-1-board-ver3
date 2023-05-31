@@ -50,10 +50,7 @@ public class BoardController {
     }
     @DeleteMapping
     @Operation(summary = "글삭제")
-    public int deleBoard(@RequestParam int iuser,@RequestParam int iboard){
-        BoardDelDto dto = new BoardDelDto();
-        dto.setIuser(iuser);
-        dto.setIboard(iboard);
+    public int deleBoard(@RequestBody BoardDelDto dto){
         return service.deleBoard(dto);
     }
 
