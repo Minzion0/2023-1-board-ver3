@@ -42,7 +42,10 @@ public class BoardController {
         dto.setIboard(iboard);
         return service.DeBoard(dto);
     }
-
+    @DeleteMapping
+    public int deleBoard(@RequestBody BoardDelDto dto){
+        return service.deleBoard(dto);
+    }
 
 
 
