@@ -32,4 +32,9 @@
         on A.iuser= B.iuser
     </select>
 
+    <select id="maxboard" resultType="int">
+        select count(iboard)
+        from t_board
+    </select>
+
 </mapper>

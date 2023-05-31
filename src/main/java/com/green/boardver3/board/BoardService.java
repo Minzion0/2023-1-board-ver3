@@ -1,28 +1,24 @@
 package com.green.boardver3.board;
 
-import com.green.boardver3.board.model.BoardDto;
-import com.green.boardver3.board.model.BoardInsDto;
-import com.green.boardver3.board.model.BoardUpdDto;
-import com.green.boardver3.board.model.BoardVo;
+import com.green.boardver3.board.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Math.ceil;
+
 @Service
 public class BoardService {
     private final BoardMapper mapper;
-
     @Autowired
     public BoardService(BoardMapper mapper) {
         this.mapper = mapper;
     }
-
-    public int insBoard(BoardInsDto dto) {
+    public int insBoard(BoardInsDto dto){
         return mapper.insBoard(dto);
     }
-
-    public int updBoard(BoardUpdDto dto) {
+    public int updBoard(BoardUpdDto dto){
         BoardUpdDto updDto = mapper.updBoard(dto);
 //        if (updDto.getIuser() == dto.getIuser()){
 //            return 1;
@@ -30,16 +26,17 @@ public class BoardService {
         return 0;
     }
 
-    public List<BoardVo> selBoard(BoardDto dto) {
-        int page = dto.getPage() - 1;
-        dto.setStartIdx(page * dto.getRow());
+    public List<BoardVo>selBoard(BoardDto dto){
+        int num=dto.getPage()-1;
+        dto.setStartIdx(num*dto.getRow());
         return mapper.selBoard(dto);
     }
-    public List<BoardVo> maxBoard(BoardDto dto){
-        int page = dto.getMaxpage();
-        int Row = dto.getRow();
-        double maxpage= Math.ceil(page/Row);
-        dto.setMaxpage(maxpage);
-        return mapper.maxBoard(dto);
+    public BoardMaxDto maxBoard(BoardMaxDto dto){
+        int maxboard = mapper.maxboard();
+        double num = Math.ceil((double) maxboard / dto.getRow());
+
+        dto.setMaxPage((int)num);
+        return dto;
+
     }
 }
