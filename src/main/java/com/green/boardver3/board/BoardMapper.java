@@ -10,7 +10,7 @@ public interface BoardMapper {
     int insBoard(BoardInsDto dto);
     List<BoardVo> selBoard(BoardDto dto);
     int maxboard();
-    BoardUpdDto updBoard(BoardUpdDto dto);
     BoardDetailVo DeBoard(BoardDetailDto dto);
-    int delBoard(BoardDelDto dto);
+
+
 }

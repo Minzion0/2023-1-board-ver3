@@ -35,21 +35,16 @@ public class BoardController {
         BoardMaxDto boardMaxDto = service.maxBoard(dto);
         return boardMaxDto.getMaxPage();
     }
-    @PutMapping
-    public int updBoard(@RequestBody BoardUpdDto dto){
-        return service.updBoard(dto);
-    }
+
     @GetMapping("/{iboard}")
     public BoardDetailVo DeBoard(@PathVariable int iboard){
         BoardDetailDto dto = new BoardDetailDto();
         dto.setIboard(iboard);
         return service.DeBoard(dto);
     }
-    @DeleteMapping
-    public int delBoard(@RequestParam int iboard ,@RequestParam int iuser){
-        BoardDelDto dto = new BoardDelDto();
-        dto.setIboard(iboard);
-        dto.setIuser(iuser);
-        return service.delBoard(dto);
-    }
+
+
+
+
+
 }

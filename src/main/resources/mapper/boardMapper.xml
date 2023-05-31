@@ -45,18 +45,7 @@
         where A.iboard = #{iboard}
     </select>
 
-    <update id="updBoard">
-        update t_board
-        set title=#{title}
-        ,ctnt=#{ctnt}
-        ,created_at=#{createdAt}
-        ,updated_at=now()
-        where iboard=#{iboard}
-    </update>
-    <delete id="delBoard">
-        delete
-        from t_board
-        where iboard=#{iboard} and iuser=#{iuser}
-    </delete>
+
+
 
 </mapper>
