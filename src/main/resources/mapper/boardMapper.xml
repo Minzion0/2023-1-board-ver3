@@ -43,7 +43,11 @@
         from t_board
         where iboard=#{iboard} and iuser=#{iuser}
     </delete>
-
-
-
+    <update id="upBoard">
+        update t_board
+        set title = #{title}
+        ,ctnt = #{ctnt}
+        ,updated_at = now()
+        where iboard = #{iboard}  and iuser = #{iuser}
+    </update>
 </mapper>

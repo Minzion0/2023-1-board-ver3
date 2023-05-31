@@ -36,5 +36,8 @@ public class BoardService {
     public int deleBoard(BoardDelDto dto){
         return mapper.deleBoard(dto);
     }
+    public int upBoard(BoardUpdDto dto){
+        return mapper.upBoard(dto);
+    }
 
 }
