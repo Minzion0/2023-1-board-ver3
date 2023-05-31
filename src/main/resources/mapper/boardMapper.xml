@@ -44,7 +44,11 @@
         on A.iuser = B.iuser
         where A.iboard = #{iboard}
     </select>
-
+    <delete id="deleBoard">
+        delete
+        from t_board
+        where iboard=#{iboard} and iuser=#{iuser}
+    </delete>
 
 
 
