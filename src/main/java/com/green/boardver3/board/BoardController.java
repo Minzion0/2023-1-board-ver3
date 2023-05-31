@@ -53,4 +53,9 @@ public class BoardController {
     public int deleBoard(@RequestBody BoardDelDto dto){
         return service.deleBoard(dto);
     }
+    @PutMapping
+    @Operation(summary = "글수정")
+    public int upBoard(@RequestBody BoardUpdDto dto){
+        return service.upBoard(dto);
+    }
 }
