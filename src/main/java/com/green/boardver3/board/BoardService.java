@@ -14,7 +14,15 @@ public class BoardService {
         this.mapper = mapper;
     }
     public int insBoard(BoardInsDto dto){
-        return mapper.insBoard(dto);
+        BoardEntity entity= new BoardEntity();
+        entity.setTitle(dto.getTitle());
+        entity.setCtnt(dto.getCtnt());
+        entity.setIuser(dto.getIuser());
+        int result = mapper.insBoard(entity);
+        if(result==1){
+            return entity.getIboard();
+        }
+        return result;
     }
 
 
