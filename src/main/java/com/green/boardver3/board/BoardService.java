@@ -34,9 +34,11 @@ public class BoardService {
     public BoardMaxDto maxBoard(BoardMaxDto dto){
         int maxboard = mapper.maxboard();
         double num = Math.ceil((double) maxboard / dto.getRow());
-
         dto.setMaxPage((int)num);
         return dto;
 
+    }
+    public BoardDetailVo DeBoard(BoardDetailDto dto){
+        return mapper.DeBoard(dto);
     }
 }

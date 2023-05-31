@@ -12,4 +12,5 @@ public interface BoardMapper {
     int maxboard();
     BoardUpdDto updBoard(BoardUpdDto dto);
     List<BoardVo> maxBoard(BoardDto dto);
+    BoardDetailVo DeBoard(BoardDetailDto dto);
 }

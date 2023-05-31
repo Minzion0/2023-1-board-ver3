@@ -26,7 +26,7 @@
    </update>
     <select id="maxBoard" resultType="BoardVo">
         select
-        A.iboard,A.title,A.iuser,B.nm,A.created_at createdAt
+        A.iboard,A.title,A.iuser,B.nm,A.created_at createdAt, B.main_pic writerMainPic
         from t_board A
         inner join t_user B
         on A.iuser= B.iuser
@@ -35,6 +35,13 @@
     <select id="maxboard" resultType="int">
         select count(iboard)
         from t_board
+    </select>
+    <select id ="DeBoard" resultType="BoardDetailVo">
+        select A.title, A.ctnt, B.nm, A.created_at createdAt
+        from t_board A
+        inner join t_user B
+        on A.iuser = B.iuser
+        where A.iboard = #{iboard}
     </select>
 
 </mapper>
