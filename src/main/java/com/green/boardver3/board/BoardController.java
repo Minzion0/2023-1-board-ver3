@@ -46,8 +46,4 @@ public class BoardController {
     public int deleBoard(@RequestBody BoardDelDto dto){
         return service.deleBoard(dto);
     }
-
-
-
-
 }
