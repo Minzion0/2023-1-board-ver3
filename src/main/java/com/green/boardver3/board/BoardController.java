@@ -18,6 +18,7 @@ public class BoardController {
     public BoardController(BoardService service) {
         this.service = service;
     }
+
     @PostMapping
     public int postBoard(@RequestBody BoardInsDto dto){
         return service.insBoard(dto);
