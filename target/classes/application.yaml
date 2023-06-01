@@ -18,8 +18,10 @@ mybatis:
 
 #SWAGGER
 springdoc:
+
   swagger-ui:
     path: /swagger.html
+    operations-sorter : method
 
 
 file:
