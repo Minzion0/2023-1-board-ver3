@@ -35,9 +35,11 @@ public class UserController {
         return service.login(dto);
     }
     @PatchMapping("/pw")
+    @Operation(summary = "비밀번호 수정")
     public int patchUser(@RequestBody UserReDto dto){
         return service.repUser(dto);
     }
+
     @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
     public int patchPic(@RequestPart Filepic filepic, @RequestPart MultipartFile img){
         return service.updPic(filepic,img);
