@@ -21,13 +21,13 @@ public class BoardController {
 
     @PostMapping
     @Operation(summary = "글쓰기")
-    public int postBoard(@RequestBody BoardInsDto dto){
+    public int postinsBoard(@RequestBody BoardInsDto dto){
         return service.insBoard(dto);
 
     }
     @GetMapping
     @Operation(summary = "페이징")
-    public List<BoardVo>getBoard(@RequestParam (defaultValue = "1") int page,@RequestParam (defaultValue = "40") @Min (value = 40) int row){
+    public List<BoardVo>getListBoard(@RequestParam (defaultValue = "1") int page,@RequestParam (defaultValue = "40") @Min (value = 40) int row){
         BoardDto dto = new BoardDto();
         dto.setPage(page);
         dto.setRow(row);

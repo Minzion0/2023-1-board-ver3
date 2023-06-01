@@ -15,4 +15,13 @@
         ,updated_at = now()
         where iboard_cmt = #{iboard_cmt} and iboard = #{iboard} and iuser = #{iuser}
     </update>
+    <select id="selCmt" resultType="CmtVo">
+        select
+        A.iboard, B.nm cmtwriter, A.ctnt, A.iboard_cmt iboardCmt
+        from t_board_cmt A
+        inner join t_user B
+        on A.iuser = B.iuser
+        where A.iboard = #{iboard}
+        limit #{startIdx}, #{row}
+    </select>
 </mapper>

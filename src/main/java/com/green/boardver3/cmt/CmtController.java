@@ -1,13 +1,15 @@
 package com.green.boardver3.cmt;
 
+import com.green.boardver3.cmt.model.CmtEntity;
 import com.green.boardver3.cmt.model.CmtInsDto;
+import com.green.boardver3.cmt.model.CmtVo;
+import com.green.boardver3.cmt.model.CmtselDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Tag(name = "댓글")
@@ -23,7 +25,13 @@ public class CmtController {
     @PostMapping("/cmt")
     @Operation(summary = "댓글생성")
     public int postCmt(@RequestBody CmtInsDto dto){
-
         return service.insCmt(dto);
+    }
+    @GetMapping("/{iboard}/cmt")
+    public List<CmtVo> getBoardCmt(@PathVariable int iboard,int page){
+        CmtselDto dto = new CmtselDto();
+        dto.setIboard(iboard);
+        dto.setPage(page);
+        return service.selCmt(dto);
     }
 }

@@ -2,8 +2,12 @@ package com.green.boardver3.cmt;
 
 import com.green.boardver3.cmt.model.CmtEntity;
 import com.green.boardver3.cmt.model.CmtInsDto;
+import com.green.boardver3.cmt.model.CmtVo;
+import com.green.boardver3.cmt.model.CmtselDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CmtService {
@@ -29,5 +33,11 @@ public class CmtService {
 
         return 0;
 
+    }
+    public List<CmtVo> selCmt(CmtselDto dto){
+        int page = dto.getPage()-1;
+        dto.setRow(5);
+        dto.setStartIdx(page*dto.getRow());
+        return mapper.selCmt(dto);
     }
 }
