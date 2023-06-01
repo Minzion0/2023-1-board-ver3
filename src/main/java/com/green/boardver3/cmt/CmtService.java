@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class CmtService {
     private final CmtMapper mapper;
-    private final int ROW=5;
+
     @Autowired
     public CmtService(CmtMapper mapper) {
         this.mapper = mapper;
@@ -37,7 +37,6 @@ public class CmtService {
     }
     public List<CmtSelVo> selCmt(CmtSelDto dto){
         int page = dto.getPage()-1;
-        dto.setRow(ROW);
         dto.setStidx(page * dto.getRow());
         return mapper.selCmt(dto);
     }

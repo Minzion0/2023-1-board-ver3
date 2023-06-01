@@ -20,6 +20,7 @@
             inner join t_user B
             on A.iuser=B.iuser
 
+
         where A.iboard=#{iboard}
         order by A.iboard_cmt
         limit #{stidx},#{row}

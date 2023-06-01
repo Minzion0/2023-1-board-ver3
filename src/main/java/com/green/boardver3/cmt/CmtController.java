@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @Tag(name = "댓글")
-@RequestMapping("/board")
+@RequestMapping("/board/cmt")
 public class CmtController {
     private final CmtService service;
     @Autowired
@@ -20,18 +20,19 @@ public class CmtController {
         this.service = service;
     }
 
-    @PostMapping("/cmt")
+    @PostMapping
     @Operation(summary = "댓글생성")
     public int postCmt(@RequestBody CmtInsDto dto){
 
         return service.insCmt(dto);
     }
 
-    @GetMapping("/{iboard}/cmt")
+    @GetMapping("/{iboard}")
     @Operation(summary = "댓글 보기")
-    public List<CmtSelVo> getCmtList(@PathVariable int iboard,int page){
+    public List<CmtSelVo> getCmtList(@PathVariable int iboard,int page ,@RequestParam(defaultValue = "5") int row){
         CmtSelDto dto = new CmtSelDto();
         dto.setPage(page);
+        dto.setRow(row);
         dto.setIboard(iboard);
         return service.selCmt(dto);
     }
