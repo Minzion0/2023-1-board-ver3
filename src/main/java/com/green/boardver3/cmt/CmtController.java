@@ -5,6 +5,7 @@ import com.green.boardver3.cmt.model.CmtSelDto;
 import com.green.boardver3.cmt.model.CmtSelVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class CmtController {
 
     @GetMapping("/{iboard}")
     @Operation(summary = "댓글 보기")
-    public List<CmtSelVo> getCmtList(@PathVariable int iboard,int page ,@RequestParam(defaultValue = "5") int row){
+    public List<CmtSelVo> getCmtList(@PathVariable int iboard, @RequestParam (defaultValue = "1") @Min(value = 1) int page , @RequestParam(defaultValue = "5") int row){
         CmtSelDto dto = new CmtSelDto();
         dto.setPage(page);
         dto.setRow(row);
