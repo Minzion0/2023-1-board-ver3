@@ -14,7 +14,7 @@
         select
         A.iboard_cmt iboardCmt,A.iboard,A.iuser
         ,B.nm writer,B.main_pic writerMainPic,A.ctnt
-        ,A.created_at createdAt
+        ,A.created_at createdAt, Max(iboard)
 
         from t_board_cmt A
             inner join t_user B

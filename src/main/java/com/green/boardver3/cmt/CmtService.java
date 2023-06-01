@@ -31,10 +31,18 @@ public class CmtService {
         return 0;
 
     }
-    public List<CmtSelVo> selCmt(CmtSelDto dto){
+    public CmtRes selCmt(CmtSelDto dto){
         int page = dto.getPage()-1;
         dto.setStidx(page * dto.getRow());
-        return mapper.selCmt(dto);
+        List<CmtVo> list =mapper.selCmt(dto);
+
+        int isMore = 0;
+
+        return CmtRes.builder()
+                .list(list)
+                .isMore(isMore)
+                .build();
+
     }
     public int delCmt(CmtDelDto dto){
         return mapper.delCmt(dto);

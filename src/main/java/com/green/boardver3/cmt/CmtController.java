@@ -33,7 +33,7 @@ public class CmtController {
 
     @GetMapping("/{iboard}/cmt")
     @Operation(summary = "댓글 보기")
-    public List<CmtSelVo> getCmtList(@PathVariable int iboard, @RequestParam (defaultValue = "1") @Min(value = 1) int page , @RequestParam(defaultValue = "5") int row){
+    public CmtRes getCmtList(@PathVariable int iboard, @RequestParam (defaultValue = "1") @Min(value = 1) int page , @RequestParam(defaultValue = "5") int row){
         CmtSelDto dto = new CmtSelDto();
         dto.setPage(page);
         dto.setRow(row);
