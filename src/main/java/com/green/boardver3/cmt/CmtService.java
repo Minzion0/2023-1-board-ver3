@@ -2,8 +2,8 @@ package com.green.boardver3.cmt;
 
 import com.green.boardver3.cmt.model.CmtEntity;
 import com.green.boardver3.cmt.model.CmtInsDto;
-import com.green.boardver3.cmt.model.CmtVo;
-import com.green.boardver3.cmt.model.CmtselDto;
+import com.green.boardver3.cmt.model.CmtSelDto;
+import com.green.boardver3.cmt.model.CmtSelVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,28 +12,33 @@ import java.util.List;
 @Service
 public class CmtService {
     private final CmtMapper mapper;
-
+    private final int ROW=5;
     @Autowired
     public CmtService(CmtMapper mapper) {
         this.mapper = mapper;
     }
-
-    public int insCmt(CmtInsDto dto) {
+    public int insCmt(CmtInsDto dto){
         CmtEntity entity = new CmtEntity();
         entity.setCtnt(dto.getCtnt());
         entity.setIuser(dto.getIuser());
         entity.setIboard(dto.getIboard());
-        try {
+        try{
             int iboard_cmt = mapper.insCmt(entity);
-            if (iboard_cmt == 1) {
+            if (iboard_cmt==1){
                 return entity.getIboardCmt();
             }
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
 
         }
 
         return 0;
 
+    }
+    public List<CmtSelVo> selCmt(CmtSelDto dto){
+        int page = dto.getPage()-1;
+        dto.setRow(ROW);
+        dto.setStidx(page * dto.getRow());
+        return mapper.selCmt(dto);
     }
 }

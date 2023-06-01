@@ -9,10 +9,17 @@
         ,iuser=#{iuser}
         ,ctnt=#{ctnt}
     </insert>
-    <update id = "updCmt">
-        update t_board_cmt
-        set ctnt = #{ctnt}
-        ,updated_at = now()
-        where iboard_cmt = #{iboard_cmt} and iboard = #{iboard} and iuser = #{iuser}
-    </update>
+
+    <select id="selCmt" resultType="CmtSelVo">
+        select
+        A.iboard_cmt iboardCmt,A.iboard,A.iuser
+        ,B.nm writer,B.main_pic writerMainPic,A.ctnt
+        ,A.created_at createdAt
+        from t_board_cmt A
+        inner join t_user B
+        on A.iuser=B.iuser
+        where iboard=#{iboard}
+        limit #{stidx},#{row}
+    </select>
+
 </mapper>
