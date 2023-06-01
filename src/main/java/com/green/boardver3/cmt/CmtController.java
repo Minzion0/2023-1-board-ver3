@@ -49,6 +49,7 @@ public class CmtController {
         return service.delCmt(dto);
     }
     @PutMapping("/cmt/{iboardCmt}")
+    @Operation(summary = "댓글수정")
     public int updCmt(@PathVariable int iboardCmt,@RequestBody CmtUpDto dto){
         CmtEntity entity = new CmtEntity();
         entity.setIboardCmt(iboardCmt);
