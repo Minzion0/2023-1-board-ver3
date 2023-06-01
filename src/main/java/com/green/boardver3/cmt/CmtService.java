@@ -2,7 +2,6 @@ package com.green.boardver3.cmt;
 
 
 import com.green.boardver3.cmt.model.CmtEntity;
-import com.green.boardver3.cmt.model.CmtInsDto;
 import com.green.boardver3.cmt.model.CmtSelDto;
 import com.green.boardver3.cmt.model.CmtSelVo;
 import org.springframework.beans.factory.annotation.Autowired;
