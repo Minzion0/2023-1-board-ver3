@@ -10,7 +10,7 @@ import java.util.List;
 public interface CmtMapper {
 
     int insCmt(CmtEntity entity);
-    int selCount(CmtSelDto dto);
+    int selCountCmt(CmtSelDto dto);
     List<CmtVo> selCmt(CmtSelDto dto);
     int delCmt(CmtDelDto dto);
     int updCmt(CmtEntity entity);

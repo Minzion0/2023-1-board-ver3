@@ -26,7 +26,7 @@
         limit #{stidx},#{row}
     </select>
 
-    <select id="selCount" resultType="int">
+    <select id="selCountCmt" resultType="int">
         select count(iboard_cmt)
         from t_board_cmt
         where iboard =#{iboard}

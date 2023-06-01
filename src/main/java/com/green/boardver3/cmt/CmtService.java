@@ -35,17 +35,17 @@ public class CmtService {
         int page = dto.getPage()-1;
         dto.setStidx(page * dto.getRow());
         List<CmtVo> list =mapper.selCmt(dto);
-        int countpage = mapper.selCount(dto);
-        double Ct = Math.ceil((double)countpage/dto.getRow());
-        int isMore = 1;
-        if ((int)Ct <= dto.getPage()) {
-            isMore = 0;
+        int maxPage = mapper.selCountCmt(dto);
+       int ce = (int)Math.ceil((double) maxPage / dto.getRow());
+        int isMore=1;
+        if (ce<=dto.getPage()){
+            isMore=0;
         }
 
         return CmtRes.builder()
                 .list(list)
                 .isMore(isMore)
-                .maxPage((int)Ct)
+                .maxPage(ce)
                 .row(dto.getRow())
                 .build();
 
