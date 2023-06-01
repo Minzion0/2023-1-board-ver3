@@ -22,7 +22,7 @@ public class CmtController {
         this.service = service;
     }
 
-    @PostMapping("/{iboard}")
+    @PostMapping("/{iboard}/cmt")
     @Operation(summary = "댓글생성")
     public int postCmt(@PathVariable int iboard,
             @RequestBody CmtInsDto dto){
