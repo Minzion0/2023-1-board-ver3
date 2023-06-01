@@ -18,11 +18,8 @@ public class CmtService {
     public CmtService(CmtMapper mapper) {
         this.mapper = mapper;
     }
-    public int insCmt(CmtInsDto dto){
-        CmtEntity entity = new CmtEntity();
-        entity.setCtnt(dto.getCtnt());
-        entity.setIuser(dto.getIuser());
-        entity.setIboard(dto.getIboard());
+    public int insCmt(CmtEntity entity){
+
         try{
             int iboard_cmt = mapper.insCmt(entity);
             if (iboard_cmt==1){

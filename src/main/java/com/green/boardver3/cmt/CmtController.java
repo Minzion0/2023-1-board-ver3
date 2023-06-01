@@ -1,5 +1,6 @@
 package com.green.boardver3.cmt;
 
+import com.green.boardver3.cmt.model.CmtEntity;
 import com.green.boardver3.cmt.model.CmtInsDto;
 import com.green.boardver3.cmt.model.CmtSelDto;
 import com.green.boardver3.cmt.model.CmtSelVo;
@@ -21,11 +22,15 @@ public class CmtController {
         this.service = service;
     }
 
-    @PostMapping("/cmt")
+    @PostMapping("/{iboard}")
     @Operation(summary = "댓글생성")
-    public int postCmt(@RequestBody CmtInsDto dto){
-
-        return service.insCmt(dto);
+    public int postCmt(@PathVariable int iboard,
+            @RequestBody CmtInsDto dto){
+        CmtEntity entity = new CmtEntity();
+        entity.setCtnt(dto.getCtnt());
+        entity.setIuser(dto.getIuser());
+        entity.setIboard(dto.getIboard());
+        return service.insCmt(entity);
     }
 
     @GetMapping("/{iboard}/cmt")
