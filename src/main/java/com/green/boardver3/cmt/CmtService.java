@@ -1,10 +1,8 @@
 package com.green.boardver3.cmt;
 
 
-import com.green.boardver3.cmt.model.CmtDelDto;
-import com.green.boardver3.cmt.model.CmtEntity;
+import com.green.boardver3.cmt.model.*;
 import com.green.boardver3.cmt.model.CmtSelDto;
-import com.green.boardver3.cmt.model.CmtSelVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +38,9 @@ public class CmtService {
     }
     public int delCmt(CmtDelDto dto){
         return mapper.delCmt(dto);
+    }
+
+    public int updCmt(CmtEntity entity){
+        return mapper.updCmt(entity);
     }
 }

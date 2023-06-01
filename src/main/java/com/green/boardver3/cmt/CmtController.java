@@ -1,6 +1,7 @@
 package com.green.boardver3.cmt;
 
 import com.green.boardver3.cmt.model.*;
+import com.green.boardver3.cmt.model.CmtSelDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Min;
@@ -46,5 +47,13 @@ public class CmtController {
         dto.setIboardCmt(iboardCmt);
         dto.setIuser(iuser);
         return service.delCmt(dto);
+    }
+    @PutMapping("/cmt/{iboardCmt}")
+    public int updCmt(@PathVariable int iboardCmt,@RequestBody CmtUpDto dto){
+        CmtEntity entity = new CmtEntity();
+        entity.setIboardCmt(iboardCmt);
+        entity.setCtnt(dto.getCtnt());
+        entity.setIuser(dto.getIuser());
+        return service.updCmt(entity);
     }
 }

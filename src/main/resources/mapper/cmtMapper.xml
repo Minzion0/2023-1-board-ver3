@@ -30,4 +30,11 @@
         from t_board_cmt
         where iboard_cmt = #{iboardCmt} and iuser = #{iuser}
     </delete>
+
+    <update id="updCmt">
+        update t_board_cmt
+        set ctnt=#{ctnt}
+        ,updated_at=now()
+        where iboard_cmt=#{iboardCmt} and iuser =#{iuser}
+    </update>
 </mapper>
