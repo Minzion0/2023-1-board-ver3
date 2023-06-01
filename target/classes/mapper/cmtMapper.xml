@@ -25,6 +25,12 @@
         order by A.iboard_cmt
         limit #{stidx},#{row}
     </select>
+
+    <select id="selMaxCmt" resultType="int">
+        select count(iboard_cmt)
+        from t_board_cmt
+        where iboard =#{iboard}
+    </select>
     <delete id="delCmt">
         delete
         from t_board_cmt
