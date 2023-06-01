@@ -47,6 +47,8 @@ public class CmtService {
         return CmtRes.builder()
                 .list(list)
                 .isMore(isMore)
+                .maxPage((int)ce)
+                .row(dto.getRow())
                 .build();
 
     }
