@@ -5,6 +5,7 @@ import com.green.boardver3.cmt.model.CmtSelDto;
 import com.green.boardver3.cmt.model.CmtSelVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Tag(name = "댓글")
-@RequestMapping("/board/cmt")
+@RequestMapping("/board")
 public class CmtController {
     private final CmtService service;
     @Autowired
@@ -20,16 +21,16 @@ public class CmtController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/cmt")
     @Operation(summary = "댓글생성")
     public int postCmt(@RequestBody CmtInsDto dto){
 
         return service.insCmt(dto);
     }
 
-    @GetMapping("/{iboard}")
+    @GetMapping("/{iboard}/cmt")
     @Operation(summary = "댓글 보기")
-    public List<CmtSelVo> getCmtList(@PathVariable int iboard,int page ,@RequestParam(defaultValue = "5") int row){
+    public List<CmtSelVo> getCmtList(@PathVariable int iboard, @RequestParam (defaultValue = "1") @Min(value = 1) int page , @RequestParam(defaultValue = "5") int row){
         CmtSelDto dto = new CmtSelDto();
         dto.setPage(page);
         dto.setRow(row);
