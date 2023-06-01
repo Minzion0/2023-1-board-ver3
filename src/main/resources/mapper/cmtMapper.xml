@@ -18,7 +18,8 @@
         from t_board_cmt A
         inner join t_user B
         on A.iuser=B.iuser
-        where iboard=#{iboard}
+        where A.iboard=#{iboard}
+        order by A.iboard_cmt
         limit #{stidx},#{row}
     </select>
 </mapper>
