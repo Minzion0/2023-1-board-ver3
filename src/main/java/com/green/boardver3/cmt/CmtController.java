@@ -29,7 +29,7 @@ public class CmtController {
         CmtEntity entity = new CmtEntity();
         entity.setCtnt(dto.getCtnt());
         entity.setIuser(dto.getIuser());
-        entity.setIboard(dto.getIboard());
+        entity.setIboard(iboard);
         return service.insCmt(entity);
     }
 
