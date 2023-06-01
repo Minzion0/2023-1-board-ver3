@@ -10,5 +10,4 @@ import java.util.List;
 @Mapper
 public interface CmtMapper {
     int insCmt(CmtEntity entity);
-    List<CmtVo> selCmt(CmtselDto dto);
-}
+   }
