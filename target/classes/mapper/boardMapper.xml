@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.boardver3.board.BoardMapper">
+    <insert id="insBoard" useGeneratedKeys="true" keyProperty="iboard">
+        insert into t_board
+        set title=#{title}
+        ,ctnt=#{ctnt}
+        ,iuser=#{iuser}
+    </insert>
+    <select id="selBoard" resultType="BoardVo">
+        select
+        A.iboard,A.title,A.iuser,B.nm,A.created_at createdAt
+        from t_board A
+        inner join t_user B
+        on A.iuser= B.iuser
+        order by A.iboard desc
+        limit #{startIdx},#{row}
+    </select>
+   <update id="updBoard">
+       update t_board
+       set title=#{title}
+       ,ctnt=#{ctnt}
+       where iboard=#{iboard}
+   </update>
+
+
+    <select id="maxboard" resultType="int">
+        select count(iboard)
+        from t_board
+    </select>
+    <select id ="DeBoard" resultType="BoardDetailVo">
+        select A.iboard, A.title, A.ctnt, B.nm writer, B.main_pic writerMainPic
+        ,A.created_at createdAt,A.updated_at updatedAt
+        from t_board A
+        inner join t_user B
+        on A.iuser = B.iuser
+        where A.iboard = #{iboard}
+    </select>
+    <delete id="deleBoard">
+        delete
+        from t_board
+        where iboard=#{iboard} and iuser=#{iuser}
+    </delete>
+    <update id="upBoard">
+        update t_board
+        set title = #{title}
+        ,ctnt = #{ctnt}
+        ,updated_at = now()
+        where iboard = #{iboard}  and iuser = #{iuser}
+    </update>
+</mapper>

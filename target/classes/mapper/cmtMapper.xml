@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.boardver3.cmt.CmtMapper">
+    <insert id="insCmt" useGeneratedKeys="true" keyProperty="iboardCmt">
+        insert t_board_cmt
+        set iboard=#{iboard}
+        ,iuser=#{iuser}
+        ,ctnt=#{ctnt}
+    </insert>
+    <update id = "updCmt">
+        update t_board_cmt
+        set ctnt = #{ctnt}
+        ,updated_at = now()
+        where iboard_cmt = #{iboard_cmt} and iboard = #{iboard} and iuser = #{iuser}
+    </update>
+    <select id="selCmt" resultType="CmtVo">
+        select
+        A.iboard, B.nm cmtwriter, A.ctnt, A.iboard_cmt iboardCmt
+        from t_board_cmt A
+        inner join t_user B
+        on A.iuser = B.iuser
+        where A.iboard = #{iboard}
+        limit #{startIdx}, #{row}
+    </select>
+</mapper>
