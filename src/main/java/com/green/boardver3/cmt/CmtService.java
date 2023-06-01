@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Math.ceil;
+
 @Service
 public class CmtService {
     private final CmtMapper mapper;
@@ -35,14 +37,12 @@ public class CmtService {
         int page = dto.getPage()-1;
         dto.setStidx(page * dto.getRow());
         List<CmtVo> list =mapper.selCmt(dto);
-        int maxPage = mapper.selCountCmt(dto);
-       int ce = (int)Math.ceil((double) maxPage / dto.getRow());
-        int isMore=1;
-        if (ce<=dto.getPage()){
-            isMore=0;
-        }
+        double maxPage = mapper.selCountCmt(dto);
+       int ce = (int)ceil( maxPage / dto.getRow());
 
-        return CmtRes.builder()
+       int isMore = ce <= dto.getPage() ? 0 : 1;
+
+       return CmtRes.builder()
                 .list(list)
                 .isMore(isMore)
                 .maxPage(ce)
