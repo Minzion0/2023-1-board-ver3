@@ -28,6 +28,7 @@ public class CmtController {
     }
 
     @GetMapping("/{iboard}/cmt")
+    @Operation(summary = "댓글 보기")
     public List<CmtSelVo> getCmtList(@PathVariable int iboard,int page){
         CmtSelDto dto = new CmtSelDto();
         dto.setPage(page);
