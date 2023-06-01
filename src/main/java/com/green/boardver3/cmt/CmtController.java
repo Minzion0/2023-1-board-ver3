@@ -1,9 +1,6 @@
 package com.green.boardver3.cmt;
 
-import com.green.boardver3.cmt.model.CmtEntity;
-import com.green.boardver3.cmt.model.CmtInsDto;
-import com.green.boardver3.cmt.model.CmtSelDto;
-import com.green.boardver3.cmt.model.CmtSelVo;
+import com.green.boardver3.cmt.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Min;
@@ -41,5 +38,13 @@ public class CmtController {
         dto.setRow(row);
         dto.setIboard(iboard);
         return service.selCmt(dto);
+    }
+    @DeleteMapping("/cmt/{iboardCmt}")
+    @Operation(summary = "댓글 삭제")
+    public int delCmt(@PathVariable int iboardCmt , @RequestParam int iuser){
+        CmtDelDto dto = new CmtDelDto();
+        dto.setIboardCmt(iboardCmt);
+        dto.setIuser(iuser);
+        return service.delCmt(dto);
     }
 }

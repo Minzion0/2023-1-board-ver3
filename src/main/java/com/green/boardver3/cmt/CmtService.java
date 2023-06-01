@@ -1,6 +1,7 @@
 package com.green.boardver3.cmt;
 
 
+import com.green.boardver3.cmt.model.CmtDelDto;
 import com.green.boardver3.cmt.model.CmtEntity;
 import com.green.boardver3.cmt.model.CmtSelDto;
 import com.green.boardver3.cmt.model.CmtSelVo;
@@ -36,5 +37,8 @@ public class CmtService {
         int page = dto.getPage()-1;
         dto.setStidx(page * dto.getRow());
         return mapper.selCmt(dto);
+    }
+    public int delCmt(CmtDelDto dto){
+        return mapper.delCmt(dto);
     }
 }

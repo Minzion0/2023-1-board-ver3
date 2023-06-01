@@ -25,4 +25,10 @@
         order by A.iboard_cmt
         limit #{stidx},#{row}
     </select>
+    <delete id="delCmt">
+        delete
+        from t_board_cmt
+        where iboard_cmt = #{iboardCmt} and iuser = #{iuser}
+
+    </delete>
 </mapper>
