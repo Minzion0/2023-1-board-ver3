@@ -1,6 +1,5 @@
 package com.green.boardver3.cmt;
 
-import com.green.boardver3.cmt.model.CmtInsDto;
 import com.green.boardver3.cmt.model.CmtSelDto;
 import com.green.boardver3.cmt.model.CmtSelVo;
 import io.swagger.v3.oas.annotations.Operation;
