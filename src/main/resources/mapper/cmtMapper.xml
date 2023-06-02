@@ -25,6 +25,11 @@
         order by A.iboard_cmt
         limit #{stidx},#{row}
     </select>
+    <select id="iboardCmtNum" resultType="int">
+        select iboard_cmt
+        from t_board_cmt
+        where iuser=#{iuser} and iboard=#{iboard}
+    </select>
 
     <select id="selCountCmt" resultType="int">
         select count(iboard_cmt)
@@ -34,7 +39,16 @@
     <delete id="delCmt">
         delete
         from t_board_cmt
-        where iboard_cmt = #{iboardCmt} and iuser = #{iuser}
+        <where>
+        <if test="iboardCmt>0 and iuser >0">
+        iboard_cmt = #{iboardCmt}
+                and iuser = #{iuser}
+        </if>
+        <if test="iboard > 0 ">
+            iboard=#{iboard}
+
+        </if>
+        </where>
     </delete>
 
     <update id="updCmt">
