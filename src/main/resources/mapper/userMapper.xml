@@ -24,7 +24,7 @@
         ,updated_at=now()
         where iuser = #{iuser}
     </update>
-    <update id="updUser">
+    <update id="updUserPic">
         update t_user
         set main_pic=#{mainPic}
         ,updated_at=now()

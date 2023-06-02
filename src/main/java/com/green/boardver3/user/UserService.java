@@ -14,7 +14,7 @@ import java.util.UUID;
 public class UserService {
     private final UserMapper mapper;
     private final CommonUtils commonUtils;
-    @Value("D:/download/")
+    @Value("${file.dir}")
     private String fileDir;
 
     @Autowired
@@ -61,8 +61,9 @@ public class UserService {
         dto.setNpw(npw);
         return mapper.repUser(dto);
     }
-    public int updPic(Filepic filepic, MultipartFile img){
-        String originalFilename = img.getOriginalFilename();
+    public int updUserPic(UserMainPicDto userMainPicDto, MultipartFile pic){
+
+        String originalFilename = pic.getOriginalFilename();
         String uuid = UUID.randomUUID().toString();
         String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
         String saveFileName = uuid + ext;
@@ -70,10 +71,13 @@ public class UserService {
         File file= new File(saveFilePath);
 
         try {
-            img.transferTo(file);
-        }catch (Exception e){
+            pic.transferTo(file);
+            userMainPicDto.setMainPic(saveFileName);
+          return   mapper.updUserPic(userMainPicDto);
 
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return 1;
+        return 0;
     }
 }

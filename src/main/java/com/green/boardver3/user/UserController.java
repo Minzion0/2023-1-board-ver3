@@ -40,9 +40,10 @@ public class UserController {
         return service.repUser(dto);
     }
 
-    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
-    public int patchPic(@RequestPart Filepic filepic, @RequestPart MultipartFile img){
-        return service.updPic(filepic,img);
+    @PatchMapping(value = "/pic",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public int patchPicUser(@RequestPart MultipartFile pic,@RequestParam int iuser){
+        UserMainPicDto userMainPicDto = new UserMainPicDto();
+        userMainPicDto.setIuser(iuser);
+        return service.updUserPic(userMainPicDto,pic);
     }
-
 }
