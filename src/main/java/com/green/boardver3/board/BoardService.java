@@ -1,6 +1,8 @@
 package com.green.boardver3.board;
 
 import com.green.boardver3.board.model.*;
+import com.green.boardver3.cmt.CmtMapper;
+import com.green.boardver3.cmt.model.CmtDelDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,11 @@ import java.util.List;
 @Service
 public class BoardService {
     private final BoardMapper mapper;
+    private final CmtMapper cmtMapper;
     @Autowired
-    public BoardService(BoardMapper mapper) {
+    public BoardService(BoardMapper mapper,CmtMapper cmtMapper) {
         this.mapper = mapper;
+        this.cmtMapper = cmtMapper;
     }
     public int insBoard(BoardInsDto dto){
         BoardEntity entity= new BoardEntity();
@@ -53,7 +57,15 @@ public class BoardService {
         return mapper.DeBoard(dto);
     }
     public int deleBoard(BoardDelDto dto){
-        return mapper.deleBoard(dto);
+
+        CmtDelDto cmtDelDto = new CmtDelDto();
+        cmtDelDto.setIboard(dto.getIboard());
+
+         cmtMapper.delCmt(cmtDelDto);
+
+
+
+       return mapper.deleBoard(dto);
     }
     public int upBoard(BoardUpdDto dto){
         return mapper.upBoard(dto);
