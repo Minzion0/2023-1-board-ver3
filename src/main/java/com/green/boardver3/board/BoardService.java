@@ -4,6 +4,8 @@ import com.green.boardver3.board.model.*;
 import com.green.boardver3.cmt.CmtMapper;
 import com.green.boardver3.cmt.CmtService;
 import com.green.boardver3.cmt.model.CmtDelDto;
+import com.green.boardver3.cmt.model.CmtRes;
+import com.green.boardver3.cmt.model.CmtSelDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,11 @@ import java.util.List;
 public class BoardService {
     private final BoardMapper mapper;
     private final CmtService cmtService;
+    private final int ROW = 5;
     @Autowired
     public BoardService(BoardMapper mapper,CmtService cmtService) {
         this.mapper = mapper;
-        this.cmtService=cmtService;
+        this.cmtService = cmtService;
     }
     public int insBoard(BoardInsDto dto){
         BoardEntity entity= new BoardEntity();
@@ -54,8 +57,17 @@ public class BoardService {
         return dto;
 
     }
-    public BoardDetailVo DeBoard(BoardDetailDto dto){
-        return mapper.DeBoard(dto);
+    public BoardCmtDetailVo DeBoard(BoardDetailDto dto){
+        BoardDetailVo boardDetailVo = mapper.DeBoard(dto);
+        CmtSelDto cmtSelDto = new CmtSelDto();
+        cmtSelDto.setIboard(dto.getIboard());
+        cmtSelDto.setPage(dto.getPage());
+        cmtSelDto.setRow(ROW);
+        CmtRes cmtRes = cmtService.selCmt(cmtSelDto);
+
+        BoardCmtDetailVo build = BoardCmtDetailVo.builder().boardVo(boardDetailVo).cmtList(cmtRes).build();
+
+        return build;
     }
     public int deleBoard(BoardDelDto dto){
 
