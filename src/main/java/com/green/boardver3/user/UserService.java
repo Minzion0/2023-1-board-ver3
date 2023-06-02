@@ -14,6 +14,8 @@ import java.util.UUID;
 public class UserService {
     private final UserMapper mapper;
     private final CommonUtils commonUtils;
+
+
     @Value("${file.dir}")
     private String fileDir;
 
@@ -62,12 +64,19 @@ public class UserService {
         return mapper.repUser(dto);
     }
     public int updUserPic(UserMainPicDto userMainPicDto, MultipartFile pic){
+        String dicPath = String.format("%s/user/%d",fileDir,userMainPicDto.getIuser());
+
+        File dic = new File(dicPath);
+        if (!dic.exists()){
+            dic.mkdirs();// 폴더 생성
+        }
 
         String originalFilename = pic.getOriginalFilename();
         String uuid = UUID.randomUUID().toString();
         String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+
         String saveFileName = uuid + ext;
-        String saveFilePath= fileDir+saveFileName;
+        String saveFilePath= dicPath+saveFileName;
         File file= new File(saveFilePath);
 
         try {
