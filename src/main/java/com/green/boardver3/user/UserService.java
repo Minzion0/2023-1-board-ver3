@@ -2,6 +2,7 @@ package com.green.boardver3.user;
 
 import com.green.boardver3.user.model.*;
 import com.green.boardver3.utils.CommonUtils;
+import com.green.boardver3.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -71,17 +72,20 @@ public class UserService {
             dic.mkdirs();// 폴더 생성
         }
 
-        String originalFilename = pic.getOriginalFilename();
-        String uuid = UUID.randomUUID().toString();
-        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 
-        String saveFileName = uuid + ext;
-        String saveFilePath= dicPath+"/"+saveFileName;
+        String saveFileName = FileUtils.makeRandomFileNm(pic.getOriginalFilename());
+
+//        String originalFilename = pic.getOriginalFilename();
+//        String uuid = UUID.randomUUID().toString();
+//        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//
+//        String saveFileName = uuid + ext;
+        String saveFilePath= dicPath+saveFileName;
         File file= new File(saveFilePath);
 
         try {
             pic.transferTo(file);
-            userMainPicDto.setMainPic(saveFileName);
+            userMainPicDto.setMainPic(String.format("user/%d",userMainPicDto.getIuser())+saveFileName);
           return   mapper.updUserPic(userMainPicDto);
 
         }catch (Exception e){
