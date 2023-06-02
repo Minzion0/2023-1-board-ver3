@@ -62,9 +62,8 @@ public class BoardService {
         BoardDetailVo boardDetailVo = mapper.DeBoard(dto);
         CmtSelDto cmtSelDto = new CmtSelDto();
         cmtSelDto.setIboard(dto.getIboard());
-        cmtSelDto.setPage(dto.getPage());
-        cmtSelDto.setRow(ROW);
         cmtSelDto.setPage(PAGE);
+        cmtSelDto.setRow(ROW);
         CmtRes cmtRes = cmtService.selCmt(cmtSelDto);
 
         BoardCmtDetailVo build = BoardCmtDetailVo.builder().boardVo(boardDetailVo).cmtList(cmtRes).build();
