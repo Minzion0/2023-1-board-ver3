@@ -1,8 +1,5 @@
 package com.green.boardver3.user;
 
-import com.green.boardver3.board.BoardService;
-import com.green.boardver3.board.model.BoardDelDto;
-import com.green.boardver3.cmt.model.CmtDelDto;
 import com.green.boardver3.user.model.*;
 import com.green.boardver3.utils.CommonUtils;
 import com.green.boardver3.utils.FileUtils;
@@ -18,17 +15,15 @@ import java.util.UUID;
 public class UserService {
     private final UserMapper mapper;
     private final CommonUtils commonUtils;
-    private final BoardService service;
 
 
     @Value("${file.dir}")
     private String fileDir;
 
     @Autowired
-    public UserService(UserMapper mapper,CommonUtils commonUtils,BoardService service) {
+    public UserService(UserMapper mapper,CommonUtils commonUtils) {
         this.commonUtils = commonUtils;
         this.mapper = mapper;
-        this.service = service;
     }
 
     public int insUser(UserInsDto dto){
@@ -76,34 +71,26 @@ public class UserService {
         if (!dic.exists()){
             dic.mkdirs();// 폴더 생성
         }
+
+
         String saveFileName = FileUtils.makeRandomFileNm(pic.getOriginalFilename());
+
 //        String originalFilename = pic.getOriginalFilename();
 //        String uuid = UUID.randomUUID().toString();
 //        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 //
 //        String saveFileName = uuid + ext;
-        String savePath = dicPath + "/" + saveFileName;
-        File file = new File(savePath);
+        String saveFilePath= dicPath+saveFileName;
+        File file= new File(saveFilePath);
 
         try {
-            userMainPicDto.setMainPic(saveFileName);
             pic.transferTo(file);
-            return mapper.updUserPic(userMainPicDto);
+            userMainPicDto.setMainPic(String.format("user/%d",userMainPicDto.getIuser())+saveFileName);
+          return   mapper.updUserPic(userMainPicDto);
 
-        }catch (Exception e)
-        {
+        }catch (Exception e){
             e.printStackTrace();
         }
-        return 0;
-    }
-    public int userDel(UserAllDelDto dto){
-        BoardDelDto boardDelDto = new BoardDelDto();
-        boardDelDto.setIuser(dto.getIuser());
-        int i = service.deleBoard(boardDelDto);
-        if (i==1){
-          return mapper.userDel(dto);
-        }
-
         return 0;
     }
 }
