@@ -5,11 +5,11 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Builder
 @Getter
+@Builder
 public class BoardRes {
-    private int row;
-    private int maxpage;
     private int isMore;
+    private int row;
+    private int maxPage;
     private List<BoardVo> list;
 }
