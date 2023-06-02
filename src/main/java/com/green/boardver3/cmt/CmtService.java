@@ -41,12 +41,14 @@ public class CmtService {
        int ce = (int)ceil( maxPage / dto.getRow());
 
        int isMore = ce <= dto.getPage() ? 0 : 1;
-
-       return CmtRes.builder()
+        int num = ce - dto.getPage();
+        return CmtRes.builder()
                 .list(list)
                 .isMore(isMore)
                 .maxPage(ce)
                 .row(dto.getRow())
+               .nowPage(dto.getPage())
+               .midPage(num)
                 .build();
 
     }

@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class BoardService {
     private final BoardMapper mapper;
+
+
     @Autowired
     public BoardService(BoardMapper mapper) {
         this.mapper = mapper;
@@ -27,10 +30,20 @@ public class BoardService {
     }
 
 
-    public List<BoardVo>selBoard(BoardDto dto){
+    public BoardRes selBoard(BoardDto dto){
         int num=dto.getPage()-1;
         dto.setStartIdx(num*dto.getRow());
-        return mapper.selBoard(dto);
+
+        List<BoardVo> list = mapper.selBoard(dto);
+        int max = mapper.maxboard();
+        int ce = (int)Math.ceil((double)max/dto.getRow());
+        int isMore = ce <= dto.getPage() ? 0:1;
+        return BoardRes.builder()
+                .list(list)
+                .isMore(isMore)
+                .maxpage(ce)
+                .row(dto.getRow())
+                .build();
     }
     public BoardMaxDto maxBoard(BoardMaxDto dto){
         int maxboard = mapper.maxboard();
