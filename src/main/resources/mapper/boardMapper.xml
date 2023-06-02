@@ -24,7 +24,14 @@
        ,ctnt=#{ctnt}
        where iboard=#{iboard}
    </update>
-
+    <select id="selBoardUser" resultType="int">
+        select iuser
+        from t_board
+        where
+        <if test="iboard>0">
+            iboard=#{iboard}
+        </if>
+    </select>
 
     <select id="maxboard" resultType="int">
         select count(iboard)

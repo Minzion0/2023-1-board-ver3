@@ -13,4 +13,5 @@ public interface BoardMapper {
     BoardDetailVo DeBoard(BoardDetailDto dto);
     int deleBoard(BoardDelDto dto);
     int upBoard(BoardUpdDto dto);
+    int selBoardUser(BoardDelDto dto);
 }

@@ -60,12 +60,18 @@ public class BoardService {
 
         CmtDelDto cmtDelDto = new CmtDelDto();
         cmtDelDto.setIboard(dto.getIboard());
+        int num = mapper.selBoardUser(dto);
+        if (dto.getIuser()==num){
+            cmtMapper.delCmt(cmtDelDto);
+            return mapper.deleBoard(dto);
+        }
+            return 0;
 
-         cmtMapper.delCmt(cmtDelDto);
 
 
 
-       return mapper.deleBoard(dto);
+
+
     }
     public int upBoard(BoardUpdDto dto){
         return mapper.upBoard(dto);
