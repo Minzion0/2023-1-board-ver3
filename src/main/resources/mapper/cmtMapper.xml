@@ -25,11 +25,7 @@
         order by A.iboard_cmt
         limit #{stidx},#{row}
     </select>
-    <select id="iboardCmtNum" resultType="int">
-        select iboard_cmt
-        from t_board_cmt
-        where iuser=#{iuser} and iboard=#{iboard}
-    </select>
+
 
     <select id="selCountCmt" resultType="int">
         select count(iboard_cmt)
