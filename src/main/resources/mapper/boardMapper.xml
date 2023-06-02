@@ -38,10 +38,16 @@
         on A.iuser = B.iuser
         where A.iboard = #{iboard}
     </select>
+
+
+
+
+
+
     <delete id="deleBoard">
         delete
         from t_board
-        where iboard=#{iboard} and iuser=#{iuser}
+        where iboard_cmt=#{iboardCmt} and iuser=#{iuser}
     </delete>
     <update id="upBoard">
         update t_board
