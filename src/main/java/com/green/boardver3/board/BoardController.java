@@ -43,9 +43,10 @@ public class BoardController {
 
     @GetMapping("/{iboard}")
     @Operation(summary = "글보기")
-    public BoardDetailVo DeBoard(@PathVariable int iboard){
+    public BoardCmtDetailVo DeBoard(@PathVariable int iboard,@RequestParam (defaultValue = "1") int page){
         BoardDetailDto dto = new BoardDetailDto();
         dto.setIboard(iboard);
+        dto.setPage(page);
         return service.DeBoard(dto);
     }
     @DeleteMapping
