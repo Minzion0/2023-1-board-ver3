@@ -46,6 +46,7 @@ public class BoardController {
     public BoardCmtDetailVo DeBoard(@PathVariable int iboard){
         BoardDetailDto dto = new BoardDetailDto();
         dto.setIboard(iboard);
+
         return service.DeBoard(dto);
     }
     @DeleteMapping
