@@ -76,7 +76,7 @@ public class UserService {
         String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 
         String saveFileName = uuid + ext;
-        String saveFilePath= dicPath+saveFileName;
+        String saveFilePath= dicPath+"/"+saveFileName;
         File file= new File(saveFilePath);
 
         try {
