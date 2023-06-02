@@ -1,7 +1,11 @@
 package com.green.boardver3.user;
 
+import com.green.boardver3.board.BoardService;
+import com.green.boardver3.board.model.BoardDelDto;
+import com.green.boardver3.cmt.model.CmtDelDto;
 import com.green.boardver3.user.model.*;
 import com.green.boardver3.utils.CommonUtils;
+import com.green.boardver3.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,15 +18,17 @@ import java.util.UUID;
 public class UserService {
     private final UserMapper mapper;
     private final CommonUtils commonUtils;
+    private final BoardService service;
 
 
     @Value("${file.dir}")
     private String fileDir;
 
     @Autowired
-    public UserService(UserMapper mapper,CommonUtils commonUtils) {
+    public UserService(UserMapper mapper,CommonUtils commonUtils,BoardService service) {
         this.commonUtils = commonUtils;
         this.mapper = mapper;
+        this.service = service;
     }
 
     public int insUser(UserInsDto dto){
@@ -70,23 +76,34 @@ public class UserService {
         if (!dic.exists()){
             dic.mkdirs();// 폴더 생성
         }
-
-        String originalFilename = pic.getOriginalFilename();
-        String uuid = UUID.randomUUID().toString();
-        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-
-        String saveFileName = uuid + ext;
-        String saveFilePath= dicPath+"/"+saveFileName;
-        File file= new File(saveFilePath);
+        String saveFileName = FileUtils.makeRandomFileNm(pic.getOriginalFilename());
+//        String originalFilename = pic.getOriginalFilename();
+//        String uuid = UUID.randomUUID().toString();
+//        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//
+//        String saveFileName = uuid + ext;
+        String savePath = dicPath + "/" + saveFileName;
+        File file = new File(savePath);
 
         try {
-            pic.transferTo(file);
             userMainPicDto.setMainPic(saveFileName);
-          return   mapper.updUserPic(userMainPicDto);
+            pic.transferTo(file);
+            return mapper.updUserPic(userMainPicDto);
 
-        }catch (Exception e){
+        }catch (Exception e)
+        {
             e.printStackTrace();
         }
+        return 0;
+    }
+    public int userDel(UserAllDelDto dto){
+        BoardDelDto boardDelDto = new BoardDelDto();
+        boardDelDto.setIuser(dto.getIuser());
+        int i = service.deleBoard(boardDelDto);
+        if (i==1){
+          return mapper.userDel(dto);
+        }
+
         return 0;
     }
 }

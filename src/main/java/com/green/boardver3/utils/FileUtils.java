@@ -19,7 +19,6 @@ public class FileUtils {
 
     }
     public static String getFileNm(String fileNm){
-
         return fileNm.substring(0,fileNm.lastIndexOf("."));
     }
 }

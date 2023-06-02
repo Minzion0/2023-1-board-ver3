@@ -44,6 +44,10 @@
             iboard=#{iboard}
 
         </if>
+        <if test="iuser > 0">
+            iuser= #{iuser}
+
+        </if>
 
     </delete>
 

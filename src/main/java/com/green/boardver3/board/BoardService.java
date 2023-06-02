@@ -81,11 +81,6 @@ public class BoardService {
         }
             return 0;
 
-
-
-
-
-
     }
     public int upBoard(BoardUpdDto dto){
         return mapper.upBoard(dto);

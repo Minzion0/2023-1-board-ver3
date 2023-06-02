@@ -46,4 +46,10 @@ public class UserController {
         userMainPicDto.setIuser(iuser);
         return service.updUserPic(userMainPicDto,pic);
     }
+    @DeleteMapping
+    public int userDel(@RequestBody UserAllDelDto dto){
+        return service.userDel(dto);
+
+
+    }
 }

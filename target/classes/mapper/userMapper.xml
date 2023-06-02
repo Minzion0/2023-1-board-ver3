@@ -30,5 +30,10 @@
         ,updated_at=now()
         where iuser=#{iuser}
     </update>
+    <delete id="userDel">
+        delete
+        from t_user
+        where iuser=#{iuser}
+    </delete>
 
 </mapper>

@@ -9,4 +9,5 @@ public interface UserMapper {
     UserLoginVo selUserById(UserLoginDto dto);//앞에께 보여주는거 ()께 입력하는거
     int repUser(UserReDto dto);
     int updUserPic(UserMainPicDto dto);
+    int userDel(UserAllDelDto dto);
 }
