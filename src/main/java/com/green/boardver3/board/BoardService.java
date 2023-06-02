@@ -16,6 +16,7 @@ public class BoardService {
     private final BoardMapper mapper;
     private final CmtService cmtService;
     private final int ROW = 5;
+    private final int PAGE = 1;
     @Autowired
     public BoardService(BoardMapper mapper,CmtService cmtService) {
         this.mapper = mapper;
@@ -63,6 +64,7 @@ public class BoardService {
         cmtSelDto.setIboard(dto.getIboard());
         cmtSelDto.setPage(dto.getPage());
         cmtSelDto.setRow(ROW);
+        cmtSelDto.setPage(PAGE);
         CmtRes cmtRes = cmtService.selCmt(cmtSelDto);
 
         BoardCmtDetailVo build = BoardCmtDetailVo.builder().boardVo(boardDetailVo).cmtList(cmtRes).build();
