@@ -27,7 +27,7 @@ public class BoardController {
     }
     @GetMapping
     @Operation(summary = "페이징")
-    public List<BoardVo>getListBoard(@RequestParam (defaultValue = "1") int page,@RequestParam (defaultValue = "40") @Min (value = 40) int row){
+    public BoardRes getListBoard(@RequestParam (defaultValue = "1") int page,@RequestParam (defaultValue = "40") @Min (value = 40) int row){
         BoardDto dto = new BoardDto();
         dto.setPage(page);
         dto.setRow(row);

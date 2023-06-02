@@ -27,10 +27,20 @@ public class BoardService {
     }
 
 
-    public List<BoardVo>selBoard(BoardDto dto){
+    public BoardRes selBoard(BoardDto dto){
         int num=dto.getPage()-1;
         dto.setStartIdx(num*dto.getRow());
-        return mapper.selBoard(dto);
+        List<BoardVo> list = mapper.selBoard(dto);
+        int maxboard = mapper.maxboard();
+        int mp = (int)Math.ceil((double) maxboard / dto.getRow());
+
+        int isMore = mp>dto.getPage() ? 1:0;
+
+        return BoardRes.builder().isMore(isMore)
+                .row(dto.getRow()).maxPage(mp).list(list).build();
+
+
+
     }
     public BoardMaxDto maxBoard(BoardMaxDto dto){
         int maxboard = mapper.maxboard();
