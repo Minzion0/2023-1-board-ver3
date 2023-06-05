@@ -21,14 +21,14 @@ public class UserService {
     private String fileDir;
 
     @Autowired
-    public UserService(UserMapper mapper,CommonUtils commonUtils) {
+    public UserService(UserMapper mapper, CommonUtils commonUtils) {
         this.commonUtils = commonUtils;
         this.mapper = mapper;
     }
 
-    public int insUser(UserInsDto dto){
+    public int insUser(UserInsDto dto) {
         char gender = Character.toUpperCase(dto.getGender());
-        if(!(gender == 'M' || gender=='F')){
+        if (!(gender == 'M' || gender == 'F')) {
             return -1;
         }
         dto.setGender(gender);
@@ -37,60 +37,58 @@ public class UserService {
         try {
             return mapper.insUser(dto);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
 
     }
 
-    public int login(UserLoginDto dto){ //앞 보여주는거 안 입력받는거!
+    public int login(UserLoginDto dto) { //앞 보여주는거 안 입력받는거!
 
         UserLoginVo vo = mapper.selUserById(dto);
         String pws = commonUtils.encodeSha256(dto.getUpw());
-        if (vo==null){
+        if (vo == null) {
             return 2;
         }
-        if (vo.getUpw().equals(pws)){
-           return 1;
-       }
-       return 3;
-
+        if (vo.getUpw().equals(pws)) {
+            return 1;
+        }
+        return 3;
 
 
     }
-    public int repUser(UserReDto dto){
+
+    public int repUser(UserReDto dto) {
         String npw = commonUtils.encodeSha256(dto.getNpw());
         dto.setNpw(npw);
         return mapper.repUser(dto);
     }
-    public int updUserPic(UserMainPicDto userMainPicDto, MultipartFile pic){
-        String dicPath = String.format("%s/user/%d",fileDir,userMainPicDto.getIuser());
+
+    public int updUserPic(UserMainPicDto userMainPicDto, MultipartFile pic) {
+        String centerPath = String.format("user/%d", userMainPicDto.getIuser());
+        String dicPath = String.format("%s/%s", fileDir, centerPath);
 
         File dic = new File(dicPath);
-        if (!dic.exists()){
+        if (!dic.exists()) {
             dic.mkdirs();// 폴더 생성
         }
 
 
         String saveFileName = FileUtils.makeRandomFileNm(pic.getOriginalFilename());
 
-//        String originalFilename = pic.getOriginalFilename();
-//        String uuid = UUID.randomUUID().toString();
-//        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-//
-//        String saveFileName = uuid + ext;
-        String saveFilePath= dicPath+saveFileName;
-        File file= new File(saveFilePath);
+
+        String saveFilePath = dicPath + saveFileName;
+        File file = new File(saveFilePath);
 
         try {
             pic.transferTo(file);
-            userMainPicDto.setMainPic(String.format("user/%d",userMainPicDto.getIuser())+saveFileName);
-          return   mapper.updUserPic(userMainPicDto);
+            userMainPicDto.setMainPic(centerPath + saveFileName);
+            return mapper.updUserPic(userMainPicDto);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+            return 0;
         }
-        return 0;
     }
 }

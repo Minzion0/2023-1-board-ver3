@@ -51,7 +51,7 @@ public class BoardController {
     }
     @DeleteMapping
     @Operation(summary = "글삭제")
-    public int deleBoard(@RequestBody BoardDelDto dto){
+    public int deleBoard (@RequestBody BoardDelDto dto) throws Exception{
         return service.deleBoard(dto);
     }
     @PutMapping
