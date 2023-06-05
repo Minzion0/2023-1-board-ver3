@@ -83,12 +83,21 @@ public class UserService {
 
         try {
             pic.transferTo(file);
-            userMainPicDto.setMainPic(centerPath + saveFileName);
-            return mapper.updUserPic(userMainPicDto);
 
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
+        userMainPicDto.setMainPic(centerPath + saveFileName);
+        try {
+            int result = mapper.updUserPic(userMainPicDto);
+            if (result == 0) {
+                throw new Exception("프로필사진 등록할수없습니다");
+            }
+        }catch (Exception e){
+            file.delete();
+            return 0;
+        }
+        return 1;
     }
 }
