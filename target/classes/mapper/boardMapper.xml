@@ -54,7 +54,13 @@
     <delete id="deleBoard">
         delete
         from t_board
-        where iboard=#{iboard} and iuser=#{iuser}
+        where
+       <if test="iboard>0 and iuser>0">
+           iboard=#{iboard} and iuser=#{iuser}
+       </if>
+        <if test="iuser > 0 ">
+            iuser=#{iuser}
+        </if>
     </delete>
     <update id="upBoard">
         update t_board
