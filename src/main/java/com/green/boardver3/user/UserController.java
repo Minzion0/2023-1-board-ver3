@@ -40,7 +40,8 @@ public class UserController {
         return service.repUser(dto);
     }
 
-    @PatchMapping(value = "/pic",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PatchMapping(name = "/pic",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})// json형태로 날라오기때문에 설정해주어야한다
+    @Operation(summary = "프사 수정")
     public int patchPicUser(@RequestPart MultipartFile pic,@RequestParam int iuser){
         UserMainPicDto userMainPicDto = new UserMainPicDto();
         userMainPicDto.setIuser(iuser);
